@@ -1,0 +1,5 @@
+upd.version: 1
+
+url: https://raw.githubusercontent.com/mrvnmyr/go-build-tool/refs/heads/main/build_tool.go
+
+# mode: language=yaml
