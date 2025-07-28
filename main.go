@@ -16,10 +16,13 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+const UPD_LINK_URL = "https://github.com/mrvnmyr/upd"
+
 // Struct for the .upd file
 type UpdFile struct {
-	Version int    `yaml:"upd.version"`
-	URL     string `yaml:"url"`
+	UpdVersion int    `yaml:"upd.version"`
+	UpdLink    string `yaml:"upd.link"`
+	URL        string `yaml:"url"`
 }
 
 // Walk upwards for .updignore, else current dir
@@ -123,8 +126,11 @@ func updateFile(projectRoot, updPath string) error {
 	if err := yaml.Unmarshal(updData, &upd); err != nil {
 		return fmt.Errorf("parsing .upd file: %w", err)
 	}
-	if upd.Version == 0 {
+	if upd.UpdVersion == 0 {
 		return errors.New("every .upd file must set a non-zero 'upd.version' field")
+	}
+	if upd.UpdLink != UPD_LINK_URL {
+		return errors.New("every .upd file must set 'upd.link' to: " + UPD_LINK_URL)
 	}
 	if upd.URL == "" {
 		return errors.New("no url field in .upd file")

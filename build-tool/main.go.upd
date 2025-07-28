@@ -1,4 +1,5 @@
 upd.version: 1
+upd.link: https://github.com/mrvnmyr/upd
 
 url: https://raw.githubusercontent.com/mrvnmyr/go-build-tool/refs/heads/main/build_tool.go
 
